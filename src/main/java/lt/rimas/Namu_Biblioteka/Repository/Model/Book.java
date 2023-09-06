@@ -33,17 +33,18 @@ public class Book {
     private String rating;
 
     @ManyToOne
-    @JoinColumn (name = "author_id", nullable = false)
+    @JoinColumn(name = "author_id", nullable = false)
     @PrimaryKeyJoinColumn
     @JsonBackReference
     private Author author;
 
-    public Book(Author author,
-                String name,
-                String genre,
-                Integer dateOfPublish,
-                String availability,
-                String rating
+    public Book(
+            Author author,
+            String name,
+            String genre,
+            Integer dateOfPublish,
+            String availability,
+            String rating
     ) {
         this.author = author;
         this.name = name;

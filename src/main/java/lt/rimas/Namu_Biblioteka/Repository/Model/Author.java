@@ -11,7 +11,6 @@ import java.util.List;
 @Table(name = "authors")
 @Getter
 @Setter
-@NoArgsConstructor
 @ToString
 public class Author {
 
@@ -20,7 +19,7 @@ public class Author {
     private Integer id;
 
     @Column(name = "name")
-    private String name;
+    private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
@@ -38,15 +37,22 @@ public class Author {
     @JsonManagedReference
     private List<Book> books = new ArrayList<>();
 
-    public Author(Integer id,
-                  String name,
-                  String lastName,
-                  Integer dateOfBirth,
-                  String country,
-                  String description
+
+
+    public Author() {
+
+    }
+
+    public Author(
+            Integer id,
+            String firstName,
+            String lastName,
+            Integer dateOfBirth,
+            String country,
+            String description
     ) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.country = country;
