@@ -1,4 +1,4 @@
-package lt.rimas.Namu.Biblioteka;
+package lt.rimas.Namu_Biblioteka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
