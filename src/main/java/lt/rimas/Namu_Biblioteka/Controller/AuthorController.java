@@ -2,6 +2,7 @@ package lt.rimas.Namu_Biblioteka.Controller;
 
 import lombok.AllArgsConstructor;
 import lt.rimas.Namu_Biblioteka.Repository.Model.Author;
+import lt.rimas.Namu_Biblioteka.Repository.Model.Book;
 import lt.rimas.Namu_Biblioteka.Service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,13 +43,19 @@ public class AuthorController {
         return "authors_list";
     }
 
-//    @RequestMapping(value = "/search", method = RequestMethod.POST)
-//    public String getAuthors(Model model, @ModelAttribute(value = "key_author") Author author) {
-//        model.addAttribute("key_author", author);
-//        model.addAttribute(
-//                "key_author_list",
-//
-//        return "authors_list";
-//    }
+    //http://localhost:8080/author/save
+    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    public String saveAuthor(Model model) {
+        model.addAttribute("key_author", new Author());
+        return "author_save";
+    }
+
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveAuthor(Model model, @ModelAttribute(value = "key_author") Author author) {
+        authorService.save(author);
+        model.addAttribute("key_author", author);
+        return "author_save";
+    }
 
 }

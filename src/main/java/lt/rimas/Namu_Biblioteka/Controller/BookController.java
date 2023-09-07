@@ -41,5 +41,20 @@ public class BookController {
         return "books_list";
     }
 
+    //http://localhost:8080/books/save
+    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    public String saveBook(Model model) {
+        model.addAttribute("key_book", new Book());
+        return "book_save";
+    }
+
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String saveBook(Model model, @ModelAttribute(value = "key_book") Book book) {
+        bookService.save(book);
+        model.addAttribute("key_book", book);
+        return "book_save";
+    }
+
 
 }
