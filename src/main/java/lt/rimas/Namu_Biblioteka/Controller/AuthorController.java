@@ -6,10 +6,7 @@ import lt.rimas.Namu_Biblioteka.Service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,9 +20,10 @@ public class AuthorController {
 
     //http://localhost:8080/author/all
     @GetMapping(path = "/all")
-    public @ResponseBody List<Author> getAuthors(){
+    public @ResponseBody List<Author> getAuthors() {
         return authorService.getAll();
     }
+
     //http://localhost:8080/author/search
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String getAuthors(Model model) {
@@ -33,5 +31,24 @@ public class AuthorController {
         model.addAttribute("key_author_list", authorService.getAll());
         return "authors_list";
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String getAuthorsName(Model model, @ModelAttribute(value = "key_author") Author author) {
+        model.addAttribute("key_author", author);
+        model.addAttribute(
+                "key_author_list",
+                authorService.getAuthorByNameLike(author.getFirstName()));
+                authorService.getAuthorByLastNameLike(author.getLastName());
+        return "authors_list";
+    }
+
+//    @RequestMapping(value = "/search", method = RequestMethod.POST)
+//    public String getAuthors(Model model, @ModelAttribute(value = "key_author") Author author) {
+//        model.addAttribute("key_author", author);
+//        model.addAttribute(
+//                "key_author_list",
+//
+//        return "authors_list";
+//    }
 
 }

@@ -21,4 +21,10 @@ public class BookService {
         return (List<Book>) bookRepository.findAll();
     }
 
+    public List<Book> getBookByName(String name){
+        return bookRepository.getBookByName("%" + name + "%");
+    }
+
+
+
 }

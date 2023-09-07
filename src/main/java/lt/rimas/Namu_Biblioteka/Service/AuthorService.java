@@ -21,6 +21,13 @@ public class AuthorService {
         return (List<Author>) authorRepository.findAll();
     }
 
+    public List<Author> getAuthorByNameLike(String name){
+        return authorRepository.getAuthorByNameLike("%" + name + "%");
+    }
+
+    public List<Author> getAuthorByLastNameLike(String lastName){
+        return authorRepository.getAuthorByLastNameLike("%" + lastName + "%");
+    }
 }
 
 

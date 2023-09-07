@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "authors")
-@Getter
 @Setter
 @ToString
 public class Author {
@@ -57,5 +56,29 @@ public class Author {
         this.dateOfBirth = dateOfBirth;
         this.country = country;
         this.description = description;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Integer getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

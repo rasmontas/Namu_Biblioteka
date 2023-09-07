@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body {
+            background-color: #A1C2F1;
+        }
+
+        .list-table {
+            border-collapse: collapse;
+        }
+
+        .list-tr-td:hover:not(.head-row) {
+          background: #f8b5b5;
+        }
+
+        .list-tr{
+            background-color: white;
+        }
+
+        .list-th{
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .list-td{
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .list-th-td {
+          text-align: left;
+          padding: 10px;
+          border: 3px solid #06283D;
+        }
+
+        .book-table-container{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
+    <script type="text/javascript">
+        function rowClicked(id) {
+            window.open("http://localhost:8080/book/search, '_self');
+        }
+
+    </script>
+</head>
+<body>
+
+<div class="book-table-container">
+    <table class="list-table">
+        <tr>
+            <div style="text-align: right; margin-bottom: 8px; margin-right: 8px;">
+                <a href="http://localhost:8080">Home page</a>
+            </div>
+        </tr>
+        <tr>
+            <div style="margin-bottom: 32px; margin-top: 32px;">
+                <form action="#" th:action="@{/books/search}" th:object="${key_book}" method="post">
+                    <div>
+                        <label>Name:</label>
+                        <input type="text" th:field="${key_book.name}" class="text"/>
+                    </div>
+                    <input type="submit" value="Submit" style="background-color: #06283D; color: white;"/>
+                </form>
+            </div>
+        </tr>
+        <tr class="list-tr">
+            <th class="list-th list-th-td">Id</th>
+            <th class="list-th list-th-td">Name</th>
+            <th class="list-th list-th-td">Genre</th>
+            <th class="list-th list-th-td">Date of publish</th>
+            <th class="list-th list-th-td">Availability</th>
+            <th class="list-th list-th-td">Rating</th>
+        </tr>
+        <tr class="list-tr list-tr-td"
+            th:each="book : ${key_book_list}"
+            th:onclick="'javascript:rowClicked(\'' + ${book.id} + '\');'">
+            <td class="list-th-td list-td" th:text="${book.id}"></td>
+            <td class="list-th-td list-td" th:text="${book.name}"></td>
+            <td class="list-th-td list-td" th:text="${book.genre}"></td>
+            <td class="list-th-td list-td" th:text="${book.dateOfPublish}"></td>
+            <td class="list-th-td list-td" th:text="${book.availability}"></td>
+            <td class="list-th-td list-td" th:text="${book.rating}"></td>
+
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

@@ -6,9 +6,9 @@ import lombok.*;
 
 @Entity
 @Table(name = "books")
-@Getter
+
 @Setter
-@NoArgsConstructor
+
 @ToString
 
 public class Book {
@@ -52,5 +52,33 @@ public class Book {
         this.dateOfPublish = dateOfPublish;
         this.availability = availability;
         this.rating = rating;
+    }
+
+    public Book() {
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public Integer getDateOfPublish() {
+        return dateOfPublish;
+    }
+
+    public String getAvailability() {
+        return availability;
+    }
+
+    public String getRating() {
+        return rating;
     }
 }
