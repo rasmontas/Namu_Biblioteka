@@ -96,6 +96,12 @@
 
         </tr>
     </table>
+    <div style="text-align: center;">
+        <input type="hidden" th:field="${key_author.id}">
+        <input type="Button" value="Delete"
+               onclick="window.open('http://localhost:8080/author/delete', '_self')"
+               style="background-color: #06283D; color: white;"/>
+    </div>
 </div>
 
 </body>

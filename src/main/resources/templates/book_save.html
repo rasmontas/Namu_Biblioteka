@@ -40,10 +40,18 @@
 
 <div class="main-container">
     <div>
+        <div>
+            <select style="margin: 10px; width: 100%;" class="select" th:field="${key_author.id}">
+                <option th:each="author : ${key_author_list}"
+                        th:value="${author.id}"
+                        th:text="${author.firstName}"></option>
+            </select>
+        </div>
         <form action="#" th:action="@{/books/save}" th:object="${key_book}" method="post">
             <div style="text-align: right; margin-bottom: 36px; margin-right: 8px;">
                 <a href="http://localhost:8080">Home</a>
             </div>
+
             <div>
                 <label>Name</label>
                 <input type="text" th:field="${key_book.name}"
@@ -74,7 +82,7 @@
                 <input type="submit" value="Save" style="background-color: #06283D; color: white;"/>
                 <input type="reset" value="Cancel" style="background-color: #06283D; color: white;"/>
                 <input type="Button" value="Back"
-                       onclick="window.open('http://localhost:8080/books/search', '_self')"
+                       onclick="window.open('http://localhost:8080/books/save', '_self')"
                        style="background-color: #06283D; color: white;"/>
             </div>
         </form>

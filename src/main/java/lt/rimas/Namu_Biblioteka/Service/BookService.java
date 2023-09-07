@@ -1,6 +1,7 @@
 package lt.rimas.Namu_Biblioteka.Service;
 
 import lt.rimas.Namu_Biblioteka.Repository.BookRepository;
+import lt.rimas.Namu_Biblioteka.Repository.Model.Author;
 import lt.rimas.Namu_Biblioteka.Repository.Model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,11 @@ public class BookService {
 
     public List<Book> getBookByName(String name){
         return bookRepository.getBookByName("%" + name + "%");
+    }
+
+    public void delete(Book book){
+        bookRepository.delete(book);
+
     }
 
 

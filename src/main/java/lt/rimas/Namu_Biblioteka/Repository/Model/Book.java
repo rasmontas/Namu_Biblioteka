@@ -7,7 +7,7 @@ import lombok.*;
 @Entity
 @Table(name = "books")
 
-@Setter
+
 
 @ToString
 
@@ -81,5 +81,33 @@ public class Book {
 
     public String getRating() {
         return rating;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setDateOfPublish(Integer dateOfPublish) {
+        this.dateOfPublish = dateOfPublish;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }

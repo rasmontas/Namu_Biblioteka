@@ -43,6 +43,7 @@ public class AuthorController {
         return "authors_list";
     }
 
+
     //http://localhost:8080/author/save
     @RequestMapping(value = "/save", method = RequestMethod.GET)
     public String saveAuthor(Model model) {
@@ -56,6 +57,12 @@ public class AuthorController {
         authorService.save(author);
         model.addAttribute("key_author", author);
         return "author_save";
+    }
+
+    //http://localhost:8080/author/delete
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    public void deleteAuthor(Author author) {
+        authorService.delete(author);
     }
 
 }
