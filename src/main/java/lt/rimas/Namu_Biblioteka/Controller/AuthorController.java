@@ -61,8 +61,15 @@ public class AuthorController {
 
     //http://localhost:8080/author/delete
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public void deleteAuthor(Author author) {
+    public String deleteAuthor(Author author) {
         authorService.delete(author);
+        return "authors_list";
+    }
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deleteAuthors(Model model, @ModelAttribute(value = "key_author") Author author) {
+        authorService.delete(author);
+        model.addAttribute("key_author", author);
+        return "authors_list";
     }
 
 }

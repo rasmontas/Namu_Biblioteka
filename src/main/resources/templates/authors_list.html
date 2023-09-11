@@ -50,6 +50,9 @@
         function rowClicked(id) {
             window.open("http://localhost:8080/author/search, '_self');
         }
+        function rowDeleteClicked(id) {
+            window.open("http://localhost:8080/author/search, '_self');
+        }
 
     </script>
 </head>
@@ -84,6 +87,7 @@
             <th class="list-th list-th-td">Last name</th>
             <th class="list-th list-th-td">Date of birth</th>
             <th class="list-th list-th-td">Country</th>
+            <th class="list-th list-th-td"></th>
         </tr>
         <tr class="list-tr list-tr-td"
             th:each="author : ${key_author_list}"
@@ -93,15 +97,20 @@
             <td class="list-th-td list-td" th:text="${author.lastName}"></td>
             <td class="list-th-td list-td" th:text="${author.dateOfBirth}"></td>
             <td class="list-th-td list-td" th:text="${author.country}"></td>
-
+            <td class="list-th-td list-td" >
+                <form th:action="@{delete}" method="post">
+                    <input type="hidden" name="id" th:value="${author.id}" />
+                    <input type="submit" value="Delete" />
+                </form>
+            </td>
         </tr>
     </table>
-    <div style="text-align: center;">
-        <input type="hidden" th:field="${key_author.id}">
-        <input type="Button" value="Delete"
-               onclick="window.open('http://localhost:8080/author/delete', '_self')"
-               style="background-color: #06283D; color: white;"/>
-    </div>
+<!--    <div style="text-align: center;">-->
+<!--        <input type="hidden" th:field="${key_author.id}">-->
+<!--        <input type="Button" value="Delete"-->
+<!--               onclick="window.open('http://localhost:8080/author/delete', '_self')"-->
+<!--               style="background-color: #06283D; color: white;"/>-->
+<!--    </div>-->
 </div>
 
 </body>

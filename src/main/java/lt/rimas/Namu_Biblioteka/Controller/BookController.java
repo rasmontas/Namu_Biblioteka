@@ -1,5 +1,8 @@
 package lt.rimas.Namu_Biblioteka.Controller;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lt.rimas.Namu_Biblioteka.Repository.Model.Author;
 import lt.rimas.Namu_Biblioteka.Repository.Model.Book;
 import lt.rimas.Namu_Biblioteka.Service.AuthorService;
@@ -61,7 +64,7 @@ public class BookController {
             Model model,
             @ModelAttribute(value = "key_book") Book book,
             @ModelAttribute(value = "key_author") Author author
-    ) {
+            ) {
         book.setAuthor(author);
         bookService.save(book);
         model.addAttribute("key_book", book);
@@ -71,8 +74,16 @@ public class BookController {
 
     //http://localhost:8080/books/delete
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public void deleteAuthor(Book book) {
+    public String deleteBook(Book book) {
         bookService.delete(book);
+        return "books_list";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deleteBooks(Model model, @ModelAttribute(value = "key_book") Book book) {
+        bookService.delete(book);
+        model.addAttribute("key_book", book);
+        return "books_list";
     }
 
 }

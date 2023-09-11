@@ -14,7 +14,7 @@ import lombok.*;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
 
