@@ -117,6 +117,8 @@ th {
             <td class="list-th-td list-td" th:text="${book.dateOfPublish}"></td>
             <td class="list-th-td list-td" th:text="${book.availability}"></td>
             <td class="list-th-td list-td" th:text="${book.rating}"></td>
+            <td class="list-th-td list-td" th:text="${book.author.firstName} + ' ' + ${book.author.lastName}"></td>
+            <td class="list-th-td list-td"/>
 <!--            <td><input type="button" value="Delete Row"-->
 <!--                       onclick="'javascript:rowDeleteClicked(\'' + ${book.id} + '\');'"></td>-->
             <td class="list-th-td list-td" >

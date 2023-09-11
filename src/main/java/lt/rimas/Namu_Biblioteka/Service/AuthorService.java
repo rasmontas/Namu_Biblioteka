@@ -26,6 +26,11 @@ public class AuthorService {
         return (List<Author>) authorRepository.findAll();
     }
 
+
+    public Author getById(Integer id){
+        return authorRepository.findById(id).orElseThrow();
+    }
+
     public List<Author> getAuthorByNameLike(String name){
         return authorRepository.getAuthorByNameLike("%" + name + "%");
     }

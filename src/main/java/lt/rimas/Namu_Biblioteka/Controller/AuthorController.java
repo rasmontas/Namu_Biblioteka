@@ -39,7 +39,9 @@ public class AuthorController {
         model.addAttribute(
                 "key_author_list",
                 authorService.getAuthorByNameLike(author.getFirstName()));
-                authorService.getAuthorByLastNameLike(author.getLastName());
+        model.addAttribute(
+                "key_author_list",
+                authorService.getAuthorByLastNameLike(author.getLastName()));
         return "authors_list";
     }
 
@@ -65,6 +67,7 @@ public class AuthorController {
         authorService.delete(author);
         return "authors_list";
     }
+
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String deleteAuthors(Model model, @ModelAttribute(value = "key_author") Author author) {
         authorService.delete(author);

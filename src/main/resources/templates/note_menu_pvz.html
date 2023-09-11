@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Select User</title>
+    <style>
+		.popup-form{
+		    background-color: #A1C2F1;
+		    display: none;
+		    position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+		}
+
+		.popup-form .form-content {
+		    text-align: center;
+            width: 50%;
+            margin: 0 auto;
+		}
+
+		.popup-form .close {
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+		.button {
+            border-radius: 15px;
+            background-color: #06283D;
+            color: white;
+            padding: 4px 12px;
+            text-align: center;
+        }
+
+        .select{
+            border-radius: 15px;
+            padding: 4px 12px;
+        }
+
+        body {
+            background-color: #A1C2F1;
+        }
+
+        button {
+            border-radius: 15px;
+            background-color: #06283D;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            display: inline-block;
+            font-size: 20px;
+            bottom: 10px;
+            width: 100%;
+            height: 100%;
+            margin-bottom: 8px;
+        }
+
+        div{
+            left: 0;
+            right: 0;
+        }
+
+        .menu{
+            display: block;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .empty{
+            font-style: italic;
+            font-size: 12px;
+        }
+
+        .divider{
+            color: #06283D;
+            text-align: center;
+            font-weight: 1000;
+            padding: 15px 32px;
+            border-bottom: 4px solid white;
+        }
+
+        .selected-user-tr-th{
+            color: white;
+            background-color: #06283D;
+            border: none;
+            padding: 1px 8px;
+        }
+
+        .selected-user-tr-td {
+            text-align: center;
+            background-color: #A1C2F1;
+            border: none;
+            padding: 1px 8px;
+        }
+
+    </style>
+    <script>
+        function showSelectAuthor() {
+            document.getElementById("selectAuthor").style.display = "block";
+            document.getElementById("bookMenu").style.display = "none";
+        }
+
+        function hideSelectAuthor() {
+            document.getElementById("selectUser").style.display = "none";
+            document.getElementById("bookMenu").style.display = "block";
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <table>
+        <tr class="selected-author-tr-th">
+            <th colspan="3" style="">
+                Author selected:
+            </th>
+        </tr>
+        <tr class="selected-author-tr-th">
+            <th class="th">id</th>
+            <th class="th">Name</th>
+            <th class="th">Last Name</th>
+        </tr>
+        <tr>
+            <td class="td" th:if="${key_author.id == null}"
+                colspan="3"
+                style="text-align: center;color: red; background-color: #06283D;padding: 4px 12px;">
+                No user selected...!
+            </td>
+        </tr>
+
+        <tr th:object="${key_author}">
+            <td class="selected-author-tr-td" th:if="${key_author.id != null}" th:text="${key_author.id}"></td>
+            <td class="selected-author-tr-td" th:text="${key_author.firstName}"></td>
+            <td class="selected-author-tr-td" th:text="${key_author.lastName}"></td>
+        </tr>
+    </table>
+</div>
+
+<div id="selectAuthor" class="popup-form">
+    <div class="form-content">
+        <span class="close" onclick="hideSelectAuthor()">&times;</span>
+        <h2>Select Author</h2>
+
+        <form action="#" th:action="@{/books/author/provide}" th:object="${key_author}" method="post">
+
+            <select style="margin: 10px; width: 100%;" class="select" th:field="${key_author.id}">
+                <option th:each="author : ${key_author_list}"
+                        th:value="${author.id}"
+                        th:text="${author.firstName} + ' ' + ${author.lastName}"></option>
+            </select><br>
+            <input type="submit" value="Submit" style="margin: 10px; width: 100%;" class="button">
+        </form>
+    </div>
+</div>
+
+<div class="menu" id="bookMenu">
+    <div style="text-align: right; margin-bottom: 36px; margin-right: 8px;">
+        <a href="http://localhost:8080">Home</a>
+    </div>
+    <div>
+        <button onclick="showSelectAuthor()">Select Author</button>
+    </div>
+    <div>
+        <p class="divider">Books</p>
+    </div>
+    <div th:if="${key_author.id != null}">
+        <div>
+            <button onclick="window.open('http://localhost:8080/books/save', '_self')">Add book</button>
+        </div>
+        <form action="#" th:action="@{/books/save}" th:object="${key_book}" method="post">
+            <div style="text-align: right; margin-bottom: 36px; margin-right: 8px;">
+                <a href="http://localhost:8080">Home</a>
+            </div>
+
+            <div>
+                <label>Name</label>
+                <input type="text" th:field="${key_book.name}"
+                       class="text" style="width: 100%;"/>
+            </div>
+            <div>
+                <label>Genre</label>
+                <input type="text" th:field="${key_book.genre}"
+                       class="text" style="width: 100%;"/>
+            </div>
+            <div>
+                <label>Date of publish</label>
+                <input type="text" th:field="${key_book.dateOfPublish}"
+                       class="text" style="width: 100%;"/>
+            </div>
+            <div>
+                <label>Availability</label>
+                <input type="text" th:field="${key_book.availability}"
+                       class="text" style="width: 100%;"/>
+            </div>
+            <div>
+                <label>Rating</label>
+                <input type="text" th:field="${key_book.rating}"
+                       class="text" style="width: 100%;"/>
+            </div>
+            <div style="text-align: center;">
+                <input type="hidden" th:field="${key_book.id}">
+                <input type="submit" value="Save" style="background-color: #06283D; color: white;"/>
+                <input type="reset" value="Cancel" style="background-color: #06283D; color: white;"/>
+                <input type="Button" value="Back"
+                       onclick="window.open('http://localhost:8080/books/save', '_self')"
+                       style="background-color: #06283D; color: white;"/>
+            </div>
+        </form>
+        <div>
+            <button onclick="window.open('http://localhost:8080/books/search', '_self')">All books</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

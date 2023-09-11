@@ -83,6 +83,10 @@ public class Book {
         return rating;
     }
 
+    public Author getAuthor() {
+        return author;
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }

@@ -55,21 +55,32 @@ public class BookController {
         model.addAttribute("key_author", new Author());
         model.addAttribute("key_author_list", authorService.getAll());
 
-        return "book_save";
+        return "note_menu_pvz";
     }
 
+
+    @RequestMapping(value = "/author/provide", method = RequestMethod.POST)
+    public String provideAuthorDetails(
+            Model model,
+            @ModelAttribute(value = "key_book") Book book,
+            @ModelAttribute(value = "key_author") Author author
+            ) {
+        model.addAttribute("key_book", book);
+        model.addAttribute("key_author", authorService.getById(author.getId()));
+        return "note_menu_pvz";
+    }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveBook(
             Model model,
             @ModelAttribute(value = "key_book") Book book,
             @ModelAttribute(value = "key_author") Author author
-            ) {
+    ) {
         book.setAuthor(author);
         bookService.save(book);
         model.addAttribute("key_book", book);
         model.addAttribute("key_author", author);
-        return "book_save";
+        return "note_menu_pvz";
     }
 
     //http://localhost:8080/books/delete
