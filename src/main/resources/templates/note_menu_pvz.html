@@ -164,17 +164,20 @@
     <div>
         <button onclick="showSelectAuthor()">Select Author</button>
     </div>
-    <div>
-        <p class="divider">Books</p>
-    </div>
+<!--    <div>-->
+<!--        <p class="divider">Books</p>-->
+<!--    </div>-->
     <div th:if="${key_author.id != null}">
-        <div>
-            <button onclick="window.open('http://localhost:8080/books/save', '_self')">Add book</button>
-        </div>
+<!--        <div>-->
+<!--            <button onclick="window.open('http://localhost:8080/books/save', '_self')">Add book</button>-->
+<!--        </div>-->
         <form action="#" th:action="@{/books/save}" th:object="${key_book}" method="post">
-            <div style="text-align: right; margin-bottom: 36px; margin-right: 8px;">
-                <a href="http://localhost:8080">Home</a>
-            </div>
+<!--            <div style="text-align: right; margin-bottom: 36px; margin-right: 8px;">-->
+<!--                <a href="http://localhost:8080">Home</a>-->
+<!--            </div>-->
+                <div>
+                    <p class="divider">Book details</p>
+                </div>
 
             <div>
                 <label>Name</label>
@@ -210,9 +213,9 @@
                        style="background-color: #06283D; color: white;"/>
             </div>
         </form>
-        <div>
-            <button onclick="window.open('http://localhost:8080/books/search', '_self')">All books</button>
-        </div>
+<!--        <div>-->
+<!--            <button onclick="window.open('http://localhost:8080/books/search', '_self')">All books</button>-->
+<!--        </div>-->
     </div>
 </div>
 
